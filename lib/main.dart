@@ -1,54 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'controllers/user_controller.dart';
+import 'controllers/business_controller.dart';
+import 'views/screens/home_screen.dart';
+import 'views/screens/onboarding_screen.dart';
+import 'utils/app_theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const EcoFootprintApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class EcoFootprintApp extends StatelessWidget {
+  const EcoFootprintApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserController()),
+        ChangeNotifierProvider(create: (_) => BusinessController()),
+      ],
+      child: MaterialApp(
+        title: 'EcoFootprint Tracker',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        home: const AppInitializer(),
+        debugShowCheckedModeBanner: false,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class AppInitializer extends StatefulWidget {
+  const AppInitializer({super.key});
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
+  @override
+  State<AppInitializer> createState() => _AppInitializerState();
+}
 
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+class _AppInitializerState extends State<AppInitializer> {
+  bool _isInitialized = false;
+  bool _hasUser = false;
 
-  final String title;
+  @override
+  void initState() {
+    super.initState();
+    _initializeApp();
+  }
+
+  Future<void> _initializeApp() async {
+    // Simulate checking for existing user
+    await Future.delayed(const Duration(seconds: 2));
+    
+    // In a real app, you'd check SharedPreferences or secure storage
+    // for existing user session
+    
+    setState(() {
+      _isInitialized = true;
+      _hasUser = false; // Set to true if user exists
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!_isInitialized) {
+      return const Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.eco,
+                size: 80,
+                color: Colors.green,
+              ),
+              SizedBox(height: 24),
+              Text(
+                'EcoFootprint Tracker',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.green,
+                ),
+              ),
+              SizedBox(height: 16),
+              CircularProgressIndicator(
+                color: Colors.green,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return _hasUser ? const HomeScreen() : const OnboardingScreen();
+  }
+}
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
