@@ -7,7 +7,7 @@ class LocationService {
   LocationService._internal();
 
   Position? _lastKnownPosition;
-  
+
   Position? get lastKnownPosition => _lastKnownPosition;
 
   // Request location permissions
@@ -96,11 +96,12 @@ class LocationService {
     double endLongitude,
   ) {
     return Geolocator.distanceBetween(
-      startLatitude,
-      startLongitude,
-      endLatitude,
-      endLongitude,
-    ) / 1000; // Convert meters to kilometers
+          startLatitude,
+          startLongitude,
+          endLatitude,
+          endLongitude,
+        ) /
+        1000; // Convert meters to kilometers
   }
 
   // Start location tracking for transportation detection
@@ -135,7 +136,7 @@ class LocationService {
     if (timeDifference == 0) return false;
 
     double speedKmh = (distance / timeDifference) * 3600;
-    
+
     // Consider user moving if speed > 5 km/h
     return speedKmh > 5.0;
   }
@@ -158,7 +159,8 @@ class LocationService {
   }
 
   // Get address from coordinates (simplified - would need geocoding package)
-  Future<String?> getAddressFromCoordinates(double latitude, double longitude) async {
+  Future<String?> getAddressFromCoordinates(
+      double latitude, double longitude) async {
     try {
       // This would require the geocoding package
       // For now, return a formatted coordinate string
@@ -171,19 +173,15 @@ class LocationService {
 
   // Check if location is within a business area (for check-ins)
   bool isWithinBusinessRadius(
-    double userLat,
-    double userLng,
-    double businessLat,
-    double businessLng,
-    {double radiusMeters = 100.0}
-  ) {
+      double userLat, double userLng, double businessLat, double businessLng,
+      {double radiusMeters = 100.0}) {
     double distance = Geolocator.distanceBetween(
       userLat,
       userLng,
       businessLat,
       businessLng,
     );
-    
+
     return distance <= radiusMeters;
   }
 
@@ -205,5 +203,3 @@ class LocationService {
     }
   }
 }
-
-
