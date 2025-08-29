@@ -168,7 +168,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: 'This Week',
             carbonAmount: weeklyCarbonFootprint,
             subtitle: '${(weeklyCarbonFootprint / 1000).toStringAsFixed(1)} kg CO₂',
-            icon: Icons.calendar_week,
+            icon: Icons.date_range,
           ),
         ),
       ],
