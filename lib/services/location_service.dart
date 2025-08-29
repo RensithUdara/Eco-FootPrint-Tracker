@@ -157,17 +157,12 @@ class LocationService {
     }
   }
 
-  // Get address from coordinates (reverse geocoding)
+  // Get address from coordinates (simplified - would need geocoding package)
   Future<String?> getAddressFromCoordinates(double latitude, double longitude) async {
     try {
-      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
-      
-      if (placemarks.isNotEmpty) {
-        Placemark place = placemarks[0];
-        return '${place.street}, ${place.locality}, ${place.administrativeArea}';
-      }
-      
-      return null;
+      // This would require the geocoding package
+      // For now, return a formatted coordinate string
+      return 'Location: ${latitude.toStringAsFixed(4)}, ${longitude.toStringAsFixed(4)}';
     } catch (e) {
       print('Error getting address: $e');
       return null;
@@ -211,5 +206,4 @@ class LocationService {
   }
 }
 
-// Import required for reverse geocoding
-import 'package:geocoding/geocoding.dart';
+
