@@ -1,0 +1,128 @@
+{
+  "carbon_factors": {
+    "transportation": {
+      "car_gasoline": 120.0,
+      "car_diesel": 110.0,
+      "car_electric": 50.0,
+      "car_hybrid": 80.0,
+      "bus": 60.0,
+      "train": 35.0,
+      "bike": -10.0,
+      "walk": -15.0,
+      "plane": 250.0,
+      "motorcycle": 95.0
+    },
+    "food": {
+      "beef": 6000.0,
+      "lamb": 5000.0,
+      "pork": 1200.0,
+      "chicken": 800.0,
+      "fish": 600.0,
+      "eggs": 400.0,
+      "dairy_milk": 320.0,
+      "cheese": 1100.0,
+      "rice": 280.0,
+      "wheat": 150.0,
+      "vegetables_local": 50.0,
+      "vegetables_imported": 150.0,
+      "fruits_local": 30.0,
+      "fruits_imported": 100.0,
+      "legumes": 80.0,
+      "nuts": 200.0
+    },
+    "energy": {
+      "electricity_grid": 400.0,
+      "electricity_solar": 40.0,
+      "electricity_wind": 10.0,
+      "natural_gas": 200.0,
+      "heating_oil": 280.0
+    }
+  },
+  "achievements": [
+    {
+      "id": "bike_week_champion",
+      "name": "Bike Week Champion",
+      "description": "Complete 7 consecutive days of biking to work",
+      "category": "transportation",
+      "points_required": 100,
+      "requirements": {
+        "consecutive_days": 7,
+        "activity_type": "bike"
+      }
+    },
+    {
+      "id": "meatless_monday_streak",
+      "name": "Meatless Monday Streak",
+      "description": "Complete 4 consecutive Meatless Mondays",
+      "category": "food",
+      "points_required": 80,
+      "requirements": {
+        "consecutive_weeks": 4,
+        "day": "monday",
+        "no_meat": true
+      }
+    },
+    {
+      "id": "zero_waste_day",
+      "name": "Zero Waste Day",
+      "description": "Complete a full day with zero waste production",
+      "category": "shopping",
+      "points_required": 150,
+      "requirements": {
+        "waste_amount": 0,
+        "duration": "day"
+      }
+    },
+    {
+      "id": "green_commuter",
+      "name": "Green Commuter",
+      "description": "Use eco-friendly transport for 30 days",
+      "category": "transportation",
+      "points_required": 200,
+      "requirements": {
+        "eco_transport_days": 30
+      }
+    },
+    {
+      "id": "plant_power",
+      "name": "Plant Power",
+      "description": "Eat plant-based meals for 7 consecutive days",
+      "category": "food",
+      "points_required": 120,
+      "requirements": {
+        "consecutive_days": 7,
+        "plant_based": true
+      }
+    }
+  ],
+  "tips": {
+    "transportation": [
+      "Try biking or walking for short trips",
+      "Use public transportation when possible",
+      "Consider carpooling or ride-sharing",
+      "Plan multiple errands in one trip",
+      "Work from home when possible"
+    ],
+    "food": [
+      "Choose local and seasonal produce",
+      "Reduce meat consumption, especially beef",
+      "Try 'Meatless Monday' or plant-based meals",
+      "Avoid food waste by meal planning",
+      "Choose organic options when available"
+    ],
+    "energy": [
+      "Switch to LED light bulbs",
+      "Unplug electronics when not in use",
+      "Use a programmable thermostat",
+      "Consider renewable energy options",
+      "Improve home insulation"
+    ],
+    "shopping": [
+      "Buy second-hand items when possible",
+      "Choose products with minimal packaging",
+      "Bring reusable bags when shopping",
+      "Repair items instead of replacing them",
+      "Support sustainable and local businesses"
+    ]
+  }
+}
